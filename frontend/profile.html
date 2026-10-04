@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StyleSense AI - Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #2d2d2d;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            font-weight: normal;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 25px;
+            background: #2d2d2d;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            Style<span>Sense AI</span>
+        </div>
+
+    </nav>
+
+
+    <!-- Profile Form -->
+
+    <div class="container">
+
+        <h1>Create Your Style Profile</h1>
+
+        <p class="subtitle">
+            Tell StyleSense AI a little about yourself.
+        </p>
+
+
+        <form id="profileForm">
+
+            <!-- Name -->
+
+            <div class="form-group">
+
+                <label for="name">Your Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+            <!-- Age -->
+
+            <div class="form-group">
+
+                <label for="age">Age</label>
+
+                <input
+                    type="number"
+                    id="age"
+                    placeholder="Enter your age"
+                >
+
+            </div>
+
+
+            <!-- Gender -->
+
+            <div class="form-group">
+
+                <label for="gender">Gender</label>
+
+                <select id="gender">
+
+                    <option value="">Select Gender</option>
+
+                    <option value="female">Female</option>
+
+                    <option value="male">Male</option>
+
+                    <option value="other">Other</option>
+
+                    <option value="prefer-not">Prefer not to say</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Style Preference -->
+
+            <div class="form-group">
+
+                <label for="style">Preferred Style</label>
+
+                <select id="style">
+
+                    <option value="">Select your style</option>
+
+                    <option value="casual">Casual</option>
+
+                    <option value="formal">Formal</option>
+
+                    <option value="traditional">Traditional</option>
+
+                    <option value="streetwear">Streetwear</option>
+
+                    <option value="sporty">Sporty</option>
+
+                    <option value="minimal">Minimal</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Favourite Colour -->
+
+            <div class="form-group">
+
+                <label for="colour">Favourite Colour</label>
+
+                <input
+                    type="text"
+                    id="colour"
+                    placeholder="Example: Black, Blue, Pink"
+                >
+
+            </div>
+
+
+            <!-- Budget -->
+
+            <div class="form-group">
+
+                <label for="budget">Preferred Budget</label>
+
+                <select id="budget">
+
+                    <option value="">Select budget</option>
+
+                    <option value="under1000">Under ₹1,000</option>
+
+                    <option value="1000-3000">₹1,000 - ₹3,000</option>
+
+                    <option value="3000-5000">₹3,000 - ₹5,000</option>
+
+                    <option value="5000plus">Above ₹5,000</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button type="submit" class="button">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+
+<script>
+document.getElementById("profileForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const profileData = {
+        name: document.getElementById("name").value,
+        age: parseInt(document.getElementById("age").value),
+        gender: document.getElementById("gender").value,
+        style: document.getElementById("style").value,
+        colour: document.getElementById("colour").value,
+        budget: document.getElementById("budget").value
+    };
+
+    try {
+
+        const response = await fetch("http://127.0.0.1:8000/profile", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(profileData)
+        });
+
+        const result = await response.json();
+
+        console.log(result);
+
+        if (response.ok) {
+            alert("Profile saved successfully!");
+
+            window.location.href = "upload.html";
+        } else {
+            alert("There was a problem saving your profile.");
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Could not connect to the StyleSense AI backend.");
+    }
+
+});
+</script>
+</body>
+
+</html>

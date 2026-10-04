@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        StyleSense AI - Style Preferences
+    </title>
+
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+
+        body {
+
+            background: #f8f5f2;
+
+            color: #2d2d2d;
+
+        }
+
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+
+        nav {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 20px 60px;
+
+            background: white;
+
+        }
+
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+        }
+
+
+        .logo span {
+
+            font-weight: normal;
+
+        }
+
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .container {
+
+            max-width: 800px;
+
+            margin: 40px auto;
+
+            padding: 40px;
+
+            background: white;
+
+            border-radius: 15px;
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 35px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-group {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+        }
+
+
+        input:focus,
+        select:focus {
+
+            outline: none;
+
+            border-color: #6f42c1;
+
+        }
+
+
+        /* =========================================
+           CUSTOM FIELD
+        ========================================= */
+
+        .custom-field {
+
+            display: none;
+
+            margin-top: 12px;
+
+        }
+
+
+        .custom-field small {
+
+            display: block;
+
+            margin-top: 6px;
+
+            color: #777;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           CHECKBOX GROUP
+        ========================================= */
+
+        .checkbox-group {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+        }
+
+
+        .checkbox-item {
+
+            padding: 12px;
+
+            background: #f7f7f7;
+
+            border-radius: 8px;
+
+        }
+
+
+        .checkbox-item input {
+
+            width: auto;
+
+            margin-right: 8px;
+
+        }
+
+
+        .checkbox-item label {
+
+            display: inline;
+
+            font-weight: normal;
+
+        }
+
+
+        /* =========================================
+           BUDGET
+        ========================================= */
+
+        .budget-value {
+
+            margin-top: 8px;
+
+            color: #666;
+
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================= */
+
+        .button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 25px;
+
+            background: #2d2d2d;
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+
+        }
+
+
+        .button:hover {
+
+            background: #555;
+
+        }
+
+
+        .button:disabled {
+
+            background: #999;
+
+            cursor: not-allowed;
+
+        }
+
+
+        /* =========================================
+           INFO
+        ========================================= */
+
+        .info {
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            background: #f5f5f5;
+
+            border-radius: 10px;
+
+            color: #666;
+
+            line-height: 1.5;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 768px) {
+
+            nav {
+
+                padding: 20px;
+
+            }
+
+
+            .container {
+
+                margin: 20px;
+
+                padding: 25px;
+
+            }
+
+
+            .checkbox-group {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            Style<span>Sense AI</span>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================================
+         MAIN CONTAINER
+    ========================================= -->
+
+    <div class="container">
+
+
+        <h1>
+
+            Tell Us About Your Style
+
+        </h1>
+
+
+        <p class="subtitle">
+
+            These preferences will help StyleSense AI
+            create personalized outfit recommendations.
+
+        </p>
+
+
+        <!-- =====================================
+             OCCASION
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="occasion">
+
+                What is the occasion?
+
+            </label>
+
+
+            <select id="occasion">
+
+                <option value="">
+
+                    Select occasion
+
+                </option>
+
+
+                <option value="casual">
+
+                    Casual / Everyday
+
+                </option>
+
+
+                <option value="college">
+
+                    College
+
+                </option>
+
+
+                <option value="office">
+
+                    Office / Work
+
+                </option>
+
+
+                <option value="party">
+
+                    Party
+
+                </option>
+
+
+                <option value="wedding">
+
+                    Wedding / Traditional
+
+                </option>
+
+
+                <option value="date">
+
+                    Date
+
+                </option>
+
+
+                <option value="travel">
+
+                    Travel
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =====================================
+             WEATHER
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="weather">
+
+                Weather
+
+            </label>
+
+
+            <select id="weather">
+
+                <option value="">
+
+                    Select weather
+
+                </option>
+
+
+                <option value="hot">
+
+                    Hot
+
+                </option>
+
+
+                <option value="warm">
+
+                    Warm
+
+                </option>
+
+
+                <option value="pleasant">
+
+                    Pleasant
+
+                </option>
+
+
+                <option value="cold">
+
+                    Cold
+
+                </option>
+
+
+                <option value="rainy">
+
+                    Rainy
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =====================================
+             PREFERRED STYLE
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="style">
+
+                Preferred Style
+
+            </label>
+
+
+            <select
+                id="style"
+                onchange="handleCustomStyle()"
+            >
+
+                <option value="">
+
+                    Select your style
+
+                </option>
+
+
+                <option value="casual">
+
+                    Casual
+
+                </option>
+
+
+                <option value="formal">
+
+                    Formal
+
+                </option>
+
+
+                <option value="traditional">
+
+                    Traditional
+
+                </option>
+
+
+                <option value="streetwear">
+
+                    Streetwear
+
+                </option>
+
+
+                <option value="sporty">
+
+                    Sporty
+
+                </option>
+
+
+                <option value="minimal">
+
+                    Minimal
+
+                </option>
+
+
+                <option value="elegant">
+
+                    Elegant
+
+                </option>
+
+
+                <option value="other">
+
+                    Other / Custom
+
+                </option>
+
+            </select>
+
+
+            <!-- CUSTOM STYLE -->
+
+            <div
+                id="customStyleBox"
+                class="custom-field"
+            >
+
+                <input
+                    type="text"
+                    id="customStyle"
+                    placeholder="Enter your preferred style"
+                >
+
+
+                <small>
+
+                    Example:
+                    Boho, Indo-Western,
+                    Vintage, Y2K, Chic
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             PREFERRED COLOURS
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label>
+
+                Preferred Colours
+
+            </label>
+
+
+            <div class="checkbox-group">
+
+
+                <div class="checkbox-item">
+
+                    <input
+                        type="checkbox"
+                        value="black"
+                        id="black"
+                    >
+
+                    <label for="black">
+
+                        Black
+
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input
+                        type="checkbox"
+                        value="white"
+                        id="white"
+                    >
+
+                    <label for="white">
+
+                        White
+
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input
+                        type="checkbox"
+                        value="blue"
+                        id="blue"
+                    >
+
+                    <label for="blue">
+
+                        Blue
+
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input
+                        type="checkbox"
+                        value="pink"
+                        id="pink"
+                    >
+
+                    <label for="pink">
+
+                        Pink
+
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input
+                        type="checkbox"
+                        value="red"
+                        id="red"
+                    >
+
+                    <label for="red">
+
+                        Red
+
+                    </label>
+
+                </div>
+
+
+                <div class="checkbox-item">
+
+                    <input
+                        type="checkbox"
+                        value="green"
+                        id="green"
+                    >
+
+                    <label for="green">
+
+                        Green
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOM COLOUR -->
+
+            <div
+                class="custom-field"
+                id="customColourBox"
+                style="display: block;"
+            >
+
+                <input
+                    type="text"
+                    id="customColour"
+                    placeholder="Enter another preferred colour"
+                >
+
+
+                <small>
+
+                    Example:
+                    Lavender, Maroon,
+                    Peach, Beige, Wine
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             ACCESSORIES
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="accessories">
+
+                Accessories Preference
+
+            </label>
+
+
+            <select id="accessories">
+
+                <option value="">
+
+                    Select preference
+
+                </option>
+
+
+                <option value="minimal">
+
+                    Minimal Accessories
+
+                </option>
+
+
+                <option value="moderate">
+
+                    Moderate Accessories
+
+                </option>
+
+
+                <option value="bold">
+
+                    Bold / Statement Accessories
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =====================================
+             BUDGET
+        ====================================== -->
+
+        <div class="form-group">
+
+            <label for="budget">
+
+                Outfit Budget
+
+            </label>
+
+
+            <select id="budget">
+
+                <option value="">
+
+                    Select budget
+
+                </option>
+
+
+                <option value="under1000">
+
+                    Under ₹1,000
+
+                </option>
+
+
+                <option value="1000-3000">
+
+                    ₹1,000 - ₹3,000
+
+                </option>
+
+
+                <option value="3000-5000">
+
+                    ₹3,000 - ₹5,000
+
+                </option>
+
+
+                <option value="5000plus">
+
+                    Above ₹5,000
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =====================================
+             BUTTON
+        ====================================== -->
+
+        <button
+            class="button"
+            id="recommendationButton"
+            onclick="generateRecommendations()"
+        >
+
+            Get My Style Recommendations
+
+        </button>
+
+
+        <!-- =====================================
+             INFORMATION
+        ====================================== -->
+
+        <div class="info">
+
+            <strong>
+
+                How this works:
+
+            </strong>
+
+
+            StyleSense AI will combine your profile,
+            appearance analysis, wardrobe items and
+            style preferences to generate personalized
+            outfit recommendations.
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        const backendURL =
+            "http://127.0.0.1:8000";
+
+
+        /* =========================================
+           CUSTOM STYLE
+        ========================================= */
+
+        function handleCustomStyle() {
+
+            const style =
+                document.getElementById(
+                    "style"
+                ).value;
+
+
+            const customStyleBox =
+                document.getElementById(
+                    "customStyleBox"
+                );
+
+
+            const customStyle =
+                document.getElementById(
+                    "customStyle"
+                );
+
+
+            if (style === "other") {
+
+                customStyleBox.style.display =
+                    "block";
+
+
+                customStyle.focus();
+
+            }
+
+            else {
+
+                customStyleBox.style.display =
+                    "none";
+
+
+                customStyle.value = "";
+
+            }
+
+        }
+
+
+        /* =========================================
+           GENERATE RECOMMENDATIONS
+        ========================================= */
+
+        async function generateRecommendations() {
+
+
+            const occasion =
+                document.getElementById(
+                    "occasion"
+                ).value;
+
+
+            const weather =
+                document.getElementById(
+                    "weather"
+                ).value;
+
+
+            let style =
+                document.getElementById(
+                    "style"
+                ).value;
+
+
+            const customStyle =
+                document.getElementById(
+                    "customStyle"
+                ).value.trim();
+
+
+            const customColour =
+                document.getElementById(
+                    "customColour"
+                ).value.trim();
+
+
+            const accessories =
+                document.getElementById(
+                    "accessories"
+                ).value;
+
+
+            const budget =
+                document.getElementById(
+                    "budget"
+                ).value;
+
+
+            /* =====================================
+               VALIDATION
+            ====================================== */
+
+            if (
+                !occasion ||
+                !weather ||
+                !style
+            ) {
+
+                alert(
+
+                    "Please select occasion, weather and preferred style."
+
+                );
+
+                return;
+
+            }
+
+
+            /* =====================================
+               CUSTOM STYLE VALIDATION
+            ====================================== */
+
+            if (
+                style === "other" &&
+                !customStyle
+            ) {
+
+                alert(
+
+                    "Please enter your custom preferred style."
+
+                );
+
+                return;
+
+            }
+
+
+            /* =====================================
+               USE CUSTOM STYLE
+            ====================================== */
+
+            if (
+                style === "other"
+            ) {
+
+                style = customStyle;
+
+            }
+
+
+            /* =====================================
+               COLLECT SELECTED COLOURS
+            ====================================== */
+
+            const selectedColours = [];
+
+
+            document
+                .querySelectorAll(
+                    '.checkbox-group input[type="checkbox"]:checked'
+                )
+                .forEach(
+
+                    function(checkbox) {
+
+                        selectedColours.push(
+
+                            checkbox.value
+
+                        );
+
+                    }
+
+                );
+
+
+            /* =====================================
+               ADD CUSTOM COLOUR
+            ====================================== */
+
+            if (customColour) {
+
+                selectedColours.push(
+                    customColour
+                );
+
+            }
+
+
+            /* =====================================
+               CHECK COLOUR
+            ===================================== */
+
+            if (
+                selectedColours.length === 0
+            ) {
+
+                alert(
+
+                    "Please select at least one preferred colour or enter a custom colour."
+
+                );
+
+                return;
+
+            }
+
+
+            /* =====================================
+               BUTTON LOADING
+            ====================================== */
+
+            const button =
+                document.getElementById(
+                    "recommendationButton"
+                );
+
+
+            button.disabled = true;
+
+
+            button.textContent =
+                "Saving Preferences...";
+
+
+            try {
+
+
+                /* =================================
+                   SAVE PREFERENCES
+                ================================= */
+
+                const response =
+                    await fetch(
+
+                        backendURL +
+                        "/preferences",
+
+                        {
+
+                            method:
+                                "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    occasion:
+                                        occasion,
+
+                                    weather:
+                                        weather,
+
+                                    style:
+                                        style,
+
+                                    colour:
+                                        selectedColours.join(
+                                            ", "
+                                        ),
+
+                                    accessories:
+                                        accessories,
+
+                                    budget:
+                                        budget
+
+                                })
+
+                        }
+
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+
+                        result.detail ||
+                        "Unable to save preferences."
+
+                    );
+
+                }
+
+
+                /* =================================
+                   REDIRECT
+                ================================= */
+
+                window.location.href =
+                    "recommendation.html";
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                alert(
+
+                    error.message ||
+                    "Unable to save preferences."
+
+                );
+
+
+                button.disabled =
+                    false;
+
+
+                button.textContent =
+                    "Get My Style Recommendations";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

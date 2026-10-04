@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StyleSense AI - Recommendation</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f8f5f2;
+    color: #2d2d2d;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: white;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    font-weight: normal;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.status {
+    text-align: center;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.preference-box {
+    background: #f7f7f7;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.preference-box h2 {
+    margin-bottom: 15px;
+}
+
+.preference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.preference-item {
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.preference-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.preference-item span {
+    color: #666;
+}
+
+.outfit-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.outfit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.outfit-card {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+}
+
+.outfit-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #f1f1f1;
+    padding: 10px;
+}
+
+.outfit-info {
+    padding: 15px;
+}
+
+.outfit-info h3 {
+    margin-bottom: 8px;
+}
+
+.outfit-info p {
+    color: #666;
+}
+
+.explanation {
+    margin-top: 35px;
+    padding: 25px;
+    background: #f7f7f7;
+    border-radius: 15px;
+}
+
+.explanation h2 {
+    margin-bottom: 15px;
+}
+
+.explanation ul {
+    padding-left: 25px;
+}
+
+.explanation li {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 25px;
+    background: #2d2d2d;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button:hover {
+    background: #555;
+}
+
+.secondary-button {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #2d2d2d;
+    border-radius: 25px;
+    background: white;
+    color: #2d2d2d;
+    font-size: 17px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.secondary-button:hover {
+    background: #f2f2f2;
+}
+
+.saved-section {
+    margin-top: 40px;
+    padding: 25px;
+    background: #f7f7f7;
+    border-radius: 15px;
+}
+
+.saved-section h2 {
+    margin-bottom: 10px;
+}
+
+.saved-subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.saved-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.saved-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.saved-card h3 {
+    margin-bottom: 8px;
+}
+
+.saved-card-info {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.saved-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.saved-images img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f1f1f1;
+    padding: 8px;
+}
+
+.saved-item-name {
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.delete-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 20px;
+    background: #b00020;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    background: #8d0019;
+}
+
+.empty-saved {
+    text-align: center;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    color: #666;
+}
+
+.error {
+    text-align: center;
+    padding: 25px;
+    background: #fff0f0;
+    border-radius: 10px;
+    color: #b00020;
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 20px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    .saved-images img {
+        height: 110px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<div class="logo">
+Style<span>Sense AI</span>
+</div>
+
+</nav>
+
+
+<div class="container">
+
+
+<h1>
+Your Personalized Outfit
+</h1>
+
+<p class="subtitle">
+StyleSense AI created this recommendation using
+your wardrobe and style preferences.
+</p>
+
+
+<div
+id="status"
+class="status"
+>
+🤖 Generating your personalized outfit...
+</div>
+
+
+<!-- =========================
+     PREFERENCES
+========================= -->
+
+<div
+id="preferencesSection"
+class="preference-box"
+style="display:none;"
+>
+
+<h2>
+Your Style Preferences
+</h2>
+
+
+<div
+id="preferencesGrid"
+class="preference-grid"
+>
+</div>
+
+</div>
+
+
+<!-- =========================
+     OUTFIT
+========================= -->
+
+<h2 class="outfit-title">
+Recommended Outfit
+</h2>
+
+
+<div
+id="outfitGrid"
+class="outfit-grid"
+>
+</div>
+
+
+<!-- =========================
+     EXPLANATION
+========================= -->
+
+<div
+id="explanationSection"
+class="explanation"
+style="display:none;"
+>
+
+<h2>
+💡 Why StyleSense AI Recommended This
+</h2>
+
+
+<ul id="explanationList">
+</ul>
+
+</div>
+
+
+<!-- =========================
+     CURRENT OUTFIT BUTTONS
+========================= -->
+
+<button
+class="button"
+onclick="saveOutfit()"
+>
+❤️ Save This Outfit
+</button>
+
+
+<button
+class="secondary-button"
+onclick="generateAnother()"
+>
+🔄 Generate Another Outfit
+</button>
+
+
+<button
+class="button"
+onclick="goToWardrobe()"
+>
+👗 Back to Wardrobe
+</button>
+
+
+<!-- =========================
+     SAVED OUTFITS
+========================= -->
+
+<div
+id="savedOutfitsSection"
+class="saved-section"
+>
+
+<h2>
+❤️ Saved Outfits
+</h2>
+
+<p class="saved-subtitle">
+Your saved outfit combinations are shown here.
+</p>
+
+<div
+id="savedOutfitsGrid"
+class="saved-grid"
+>
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+const backendURL =
+"http://127.0.0.1:8000";
+let currentRecommendation = null;
+
+/* =========================================================
+   LOAD RECOMMENDATION
+========================================================= */
+
+async function loadRecommendation() {
+
+    const status =
+        document.getElementById("status");
+
+    const outfitGrid =
+        document.getElementById("outfitGrid");
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/recommendation"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok ||
+            result.status !== "success") {
+
+            throw new Error(
+                result.message ||
+                "Unable to generate recommendation."
+            );
+
+        }
+
+
+        status.innerText =
+            "✅ AI outfit recommendation generated successfully.";
+
+
+        displayPreferences(
+            result.preferences
+        );
+
+
+        displayOutfit(
+            result.outfit
+        );
+
+
+        displayExplanation(
+            result.explanation
+        );
+
+currentRecommendation = result;
+
+localStorage.setItem(
+    "latestRecommendation",
+    JSON.stringify(result)
+);
+
+        await displaySavedOutfits();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        status.innerText =
+            "❌ Unable to generate recommendation.";
+
+
+        outfitGrid.innerHTML = `
+
+            <div class="error">
+
+                ${error.message}
+
+                <br><br>
+
+                Please make sure your wardrobe
+                and preferences are available.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   DISPLAY PREFERENCES
+========================================================= */
+
+function displayPreferences(
+    preferences
+) {
+
+    const section =
+        document.getElementById(
+            "preferencesSection"
+        );
+
+
+    const grid =
+        document.getElementById(
+            "preferencesGrid"
+        );
+
+
+    section.style.display =
+        "block";
+
+
+    grid.innerHTML = `
+
+        <div class="preference-item">
+
+            <strong>Occasion</strong>
+
+            <span>
+                ${preferences.occasion}
+            </span>
+
+        </div>
+
+
+        <div class="preference-item">
+
+            <strong>Weather</strong>
+
+            <span>
+                ${preferences.weather}
+            </span>
+
+        </div>
+
+
+        <div class="preference-item">
+
+            <strong>Style</strong>
+
+            <span>
+                ${preferences.style}
+            </span>
+
+        </div>
+
+
+        <div class="preference-item">
+
+            <strong>Colour</strong>
+
+            <span>
+                ${preferences.colour}
+            </span>
+
+        </div>
+
+
+        <div class="preference-item">
+
+            <strong>Accessories</strong>
+
+            <span>
+                ${preferences.accessories}
+            </span>
+
+        </div>
+
+
+        <div class="preference-item">
+
+            <strong>Budget</strong>
+
+            <span>
+                ${preferences.budget}
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   DISPLAY OUTFIT
+========================================================= */
+
+function displayOutfit(
+    outfit
+) {
+
+    const grid =
+        document.getElementById(
+            "outfitGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    Object.keys(outfit).forEach(
+        function(category) {
+
+            const item =
+                outfit[category];
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "outfit-card";
+
+
+            const imageURL =
+                backendURL +
+                "/wardrobe-images/" +
+                item.image;
+
+
+            card.innerHTML = `
+
+                <img
+                    src="${imageURL}"
+                    alt="${item.item_name}"
+                >
+
+
+                <div class="outfit-info">
+
+                    <h3>
+                        ${item.item_name}
+                    </h3>
+
+                    <p>
+                        ${category}
+                        •
+                        ${item.colour}
+                    </p>
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY EXPLANATION
+========================================================= */
+
+function displayExplanation(
+    explanations
+) {
+
+    const section =
+        document.getElementById(
+            "explanationSection"
+        );
+
+
+    const list =
+        document.getElementById(
+            "explanationList"
+        );
+
+
+    section.style.display =
+        "block";
+
+
+    list.innerHTML = "";
+
+
+    explanations.forEach(
+        function(text) {
+
+            const li =
+                document.createElement(
+                    "li"
+                );
+
+
+            li.innerText =
+                text;
+
+
+            list.appendChild(li);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   GET SAVED OUTFITS
+========================================================= */
+
+async function getSavedOutfits() {
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/saved-outfits"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to load saved outfits."
+            );
+
+        }
+
+
+        return result.outfits || [];
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load saved outfits:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+async function saveOutfit() {
+
+    if (
+        !currentRecommendation ||
+        !currentRecommendation.outfit ||
+        Object.keys(currentRecommendation.outfit).length === 0
+    ) {
+
+        alert(
+            "No recommendation available to save."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/saved-outfit",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        outfit:
+                            currentRecommendation.outfit,
+
+                        preferences:
+                            currentRecommendation.preferences
+                            || {},
+
+                        score:
+                            currentRecommendation.score
+                            || 0,
+
+                        explanation:
+                            currentRecommendation.explanation
+                            || []
+
+                    })
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to save outfit."
+            );
+
+        }
+
+
+        if (
+            result.status === "duplicate"
+        ) {
+
+            alert(
+                "❤️ This outfit is already saved."
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "❤️ Outfit saved successfully!"
+        );
+
+
+        await displaySavedOutfits();
+
+
+    } catch (error) {
+
+        console.error(
+            "Save outfit error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Something went wrong while saving the outfit."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DISPLAY SAVED OUTFITS
+========================================================= */
+
+async function displaySavedOutfits() {
+
+    const grid =
+        document.getElementById(
+            "savedOutfitsGrid"
+        );
+
+
+    if (!grid) {
+
+        return;
+
+    }
+
+
+    const savedOutfits =
+        await getSavedOutfits();
+
+
+    grid.innerHTML = "";
+
+
+    if (
+        savedOutfits.length === 0
+    ) {
+
+        grid.innerHTML = `
+
+            <div class="empty-saved">
+
+                ❤️ No saved outfits yet.
+
+                <br><br>
+
+                Click
+                <strong>
+                    "Save This Outfit"
+                </strong>
+                to save your favourite outfit.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    savedOutfits
+        .slice()
+        .reverse()
+        .forEach(
+            function(savedOutfit) {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "saved-card";
+
+
+                const preferences =
+                    savedOutfit.preferences
+                    || {};
+
+
+                let imagesHTML =
+                    "";
+
+
+                Object.keys(
+                    savedOutfit.outfit
+                    || {}
+                ).forEach(
+                    function(category) {
+
+                        const item =
+                            savedOutfit
+                            .outfit[
+                                category
+                            ];
+
+
+                        if (!item) {
+
+                            return;
+
+                        }
+
+
+                        const imageURL =
+                            backendURL +
+                            "/wardrobe-images/" +
+                            item.image;
+
+
+                        imagesHTML += `
+
+                            <div>
+
+                                <img
+                                    src="${imageURL}"
+                                    alt="${item.item_name}"
+                                >
+
+                                <div
+                                    class="saved-item-name"
+                                >
+                                    ${item.item_name}
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                );
+
+
+                card.innerHTML = `
+
+                    <h3>
+                        Saved Outfit
+                    </h3>
+
+
+                    <div
+                        class="saved-card-info"
+                    >
+
+                        Score:
+                        <strong>
+                            ${savedOutfit.score}/100
+                        </strong>
+
+                        <br>
+
+                        Occasion:
+                        ${preferences.occasion
+                            || "Not specified"}
+
+                        <br>
+
+                        Style:
+                        ${preferences.style
+                            || "Not specified"}
+
+                        <br>
+
+                        Colour:
+                        ${preferences.colour
+                            || "Not specified"}
+
+                    </div>
+
+
+                    <div
+                        class="saved-images"
+                    >
+
+                        ${imagesHTML}
+
+                    </div>
+
+
+                    <button
+                        class="delete-button"
+                        onclick="deleteSavedOutfit('${savedOutfit.id}')"
+                    >
+
+                        🗑️ Delete Saved Outfit
+
+                    </button>
+
+                `;
+
+
+                grid.appendChild(
+                    card
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   DELETE SAVED OUTFIT
+========================================================= */
+
+async function deleteSavedOutfit(
+    outfitId
+) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this saved outfit?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/saved-outfit/" +
+                outfitId,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to delete saved outfit."
+            );
+
+        }
+
+
+        alert(
+            "🗑️ Saved outfit deleted successfully."
+        );
+
+
+        await displaySavedOutfits();
+
+
+    } catch (error) {
+
+        console.error(
+            "Delete saved outfit error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Something went wrong while deleting the outfit."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   GENERATE ANOTHER
+========================================================= */
+
+async function generateAnother() {
+
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    status.innerText =
+        "🔄 Generating another outfit...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/recommendation/another"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            result.status !== "success"
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Unable to generate another outfit."
+            );
+
+        }
+
+
+        displayPreferences(
+            result.preferences
+        );
+
+
+        displayOutfit(
+            result.outfit
+        );
+
+
+        displayExplanation(
+            result.explanation
+        );
+
+currentRecommendation = result;
+
+localStorage.setItem(
+    "latestRecommendation",
+    JSON.stringify(
+        result
+    )
+);
+
+
+        status.innerText =
+            "✅ Another outfit recommendation generated successfully.";
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        status.innerText =
+            "❌ Unable to generate another outfit.";
+
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   BACK TO WARDROBE
+========================================================= */
+
+function goToWardrobe() {
+
+    window.location.href =
+        "wardrobe.html";
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadRecommendation();
+
+displaySavedOutfits();
+
+
+</script>
+
+
+</body>
+
+</html>

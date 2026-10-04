@@ -1,0 +1,79 @@
+[
+    {
+        "id": "33840984-c6cf-4b25-a031-419e30076e6b",
+        "item_name": "saree",
+        "category": "Saree",
+        "colour": "purple",
+        "image": "33840984-c6cf-4b25-a031-419e30076e6b.jpg",
+        "pattern": "simple",
+        "style": "party",
+        "occasion": "reception",
+        "season": "winter"
+    },
+    {
+        "id": "b216a9ad-18af-4507-aa76-cc5e5cbe4fb8",
+        "item_name": "White Floral Top",
+        "category": "Top",
+        "colour": "White",
+        "pattern": "Floral",
+        "style": "Casual",
+        "occasion": "College",
+        "season": "Summer",
+        "image": "b216a9ad-18af-4507-aa76-cc5e5cbe4fb8.webp"
+    },
+    {
+        "id": "d42eff09-19e4-4f20-b4d5-f371d8f709cc",
+        "item_name": "Bag",
+        "category": "HandBag",
+        "colour": "Black",
+        "pattern": "Other",
+        "style": "Casual",
+        "occasion": "College",
+        "season": "Summer",
+        "image": "d42eff09-19e4-4f20-b4d5-f371d8f709cc.webp"
+    },
+    {
+        "id": "2af73b30-f2a6-4a9f-ac22-1c1e4929f044",
+        "item_name": "Lehenga",
+        "category": "Dress",
+        "colour": "Pink",
+        "pattern": "Embroidered",
+        "style": "Traditional",
+        "occasion": "Other",
+        "season": "Spring",
+        "image": "2af73b30-f2a6-4a9f-ac22-1c1e4929f044.webp"
+    },
+    {
+        "id": "5c166e86-aa05-482e-a7d7-d6dff566fe17",
+        "item_name": "Heels",
+        "category": "Footwear",
+        "colour": "cream",
+        "pattern": "Plain",
+        "style": "Casual",
+        "occasion": "Office",
+        "season": "All Season",
+        "image": "5c166e86-aa05-482e-a7d7-d6dff566fe17.webp"
+    },
+    {
+        "id": "c734c60b-97c1-40ac-b8a9-646bdd27792d",
+        "item_name": "Heels",
+        "category": "Footwear",
+        "colour": "Black",
+        "pattern": "Plain",
+        "style": "Formal",
+        "occasion": "Party",
+        "season": "All Season",
+        "image": "c734c60b-97c1-40ac-b8a9-646bdd27792d.jpg"
+    },
+    {
+        "id": "389d599f-8fa4-40c1-841b-fa25c14cb144",
+        "item_name": "Pants",
+        "category": "Bottom",
+        "colour": "Black",
+        "pattern": "Plain",
+        "style": "Casual",
+        "occasion": "Casual Outing",
+        "season": "All Season",
+        "image": "389d599f-8fa4-40c1-841b-fa25c14cb144.jpg"
+    }
+]

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StyleSense AI - Upload Photo</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f8f5f2;
+    color: #2d2d2d;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: white;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    font-weight: normal;
+}
+
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.upload-box {
+    border: 2px dashed #aaa;
+    border-radius: 15px;
+    padding: 40px 20px;
+    margin-bottom: 25px;
+}
+
+.upload-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.upload-box h3 {
+    margin-bottom: 10px;
+}
+
+.upload-box p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.choose-button,
+.camera-button {
+    display: inline-block;
+    padding: 13px 25px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.choose-button {
+    background: #2d2d2d;
+}
+
+.choose-button:hover {
+    background: #555;
+}
+
+.camera-button {
+    background: #6f42c1;
+}
+
+.camera-button:hover {
+    background: #56329a;
+}
+
+
+/* ================================
+   CAMERA SECTION
+================================ */
+
+#cameraSection {
+    display: none;
+    margin-top: 20px;
+}
+
+#cameraPreview {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+    background: #222;
+}
+
+.camera-controls {
+    margin-top: 15px;
+}
+
+.camera-control-button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.capture-button {
+    background: #2d2d2d;
+}
+
+.capture-button:hover {
+    background: #555;
+}
+
+.retake-button {
+    background: #777;
+}
+
+.retake-button:hover {
+    background: #555;
+}
+
+.use-photo-button {
+    background: #6f42c1;
+}
+
+.use-photo-button:hover {
+    background: #56329a;
+}
+
+
+/* ================================
+   CAPTURED PHOTO
+================================ */
+
+#capturedCanvas {
+    display: none;
+}
+
+
+/* ================================
+   SELECTED IMAGE
+================================ */
+
+#preview {
+    display: none;
+    max-width: 300px;
+    max-height: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+    object-fit: contain;
+    background: #f1f1f1;
+    padding: 8px;
+}
+
+
+/* ================================
+   CONTINUE BUTTON
+================================ */
+
+.continue-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 25px;
+    background: #2d2d2d;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.continue-button:hover {
+    background: #555;
+}
+
+.continue-button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+
+/* ================================
+   STATUS
+================================ */
+
+#uploadStatus {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* ================================
+   INFO
+================================ */
+
+.info {
+    margin-top: 25px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 20px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    #cameraPreview {
+        height: 280px;
+    }
+
+    .choose-button,
+    .camera-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<div class="logo">
+
+Style<span>Sense AI</span>
+
+</div>
+
+</nav>
+
+
+<div class="container">
+
+
+<h1>
+
+Upload Your Photo
+
+</h1>
+
+
+<p class="subtitle">
+
+Upload a clear photo or use your camera so
+StyleSense AI can analyze your appearance
+and provide personalized style recommendations.
+
+</p>
+
+
+<!-- =====================================
+     UPLOAD BOX
+====================================== -->
+
+<div class="upload-box">
+
+
+<div class="upload-icon">
+
+📷
+
+</div>
+
+
+<h3>
+
+Choose How You Want to Add Your Photo
+
+</h3>
+
+
+<p>
+
+Use an existing photo or capture a new one.
+
+</p>
+
+
+<!-- EXISTING PHOTO -->
+
+<label
+    for="photo"
+    class="choose-button"
+>
+
+Choose Photo
+
+</label>
+
+
+<input
+    type="file"
+    id="photo"
+    accept="image/*"
+>
+
+
+<!-- CAMERA -->
+
+<button
+    type="button"
+    class="camera-button"
+    onclick="openCamera()"
+>
+
+📸 Use Camera
+
+</button>
+
+
+</div>
+
+
+<!-- =====================================
+     CAMERA SECTION
+====================================== -->
+
+<div id="cameraSection">
+
+
+<h3 style="margin-bottom: 15px;">
+
+Take Your Photo
+
+</h3>
+
+
+<video
+    id="cameraPreview"
+    autoplay
+    playsinline
+>
+</video>
+
+
+<canvas
+    id="capturedCanvas"
+>
+</canvas>
+
+
+<div class="camera-controls">
+
+
+<button
+    type="button"
+    class="camera-control-button capture-button"
+    onclick="capturePhoto()"
+>
+
+📸 Capture Photo
+
+</button>
+
+
+<button
+    type="button"
+    class="camera-control-button retake-button"
+    onclick="retakePhoto()"
+>
+
+🔄 Retake
+
+</button>
+
+
+<button
+    type="button"
+    class="camera-control-button use-photo-button"
+    onclick="useCapturedPhoto()"
+>
+
+✅ Use This Photo
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================
+     IMAGE PREVIEW
+====================================== -->
+
+<img
+    id="preview"
+    alt="Selected Photo"
+>
+
+
+<div id="uploadStatus"></div>
+
+
+<!-- =====================================
+     CONTINUE
+====================================== -->
+
+<button
+    class="continue-button"
+    id="continueButton"
+    onclick="uploadPhoto()"
+>
+
+Continue to Analysis
+
+</button>
+
+
+<div class="info">
+
+<strong>
+
+Privacy:
+
+</strong>
+
+Your uploaded or captured photo will be used
+for appearance analysis as part of the
+StyleSense AI system.
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+const backendURL =
+    "http://127.0.0.1:8000";
+
+
+const photoInput =
+    document.getElementById("photo");
+
+
+const preview =
+    document.getElementById("preview");
+
+
+const uploadStatus =
+    document.getElementById("uploadStatus");
+
+
+const continueButton =
+    document.getElementById("continueButton");
+
+
+const cameraSection =
+    document.getElementById("cameraSection");
+
+
+const cameraPreview =
+    document.getElementById("cameraPreview");
+
+
+const capturedCanvas =
+    document.getElementById("capturedCanvas");
+
+
+let cameraStream = null;
+
+let capturedFile = null;
+
+
+/* =========================================
+   EXISTING PHOTO UPLOAD
+========================================= */
+
+photoInput.addEventListener(
+    "change",
+    function () {
+
+        const file = this.files[0];
+
+
+        if (file) {
+
+            capturedFile = null;
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    preview.src =
+                        event.target.result;
+
+                    preview.style.display =
+                        "block";
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+
+            uploadStatus.innerText =
+                "";
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   OPEN CAMERA
+========================================= */
+
+async function openCamera() {
+
+    try {
+
+        cameraStream =
+            await navigator.mediaDevices.getUserMedia(
+                {
+                    video: {
+                        facingMode: "user"
+                    },
+                    audio: false
+                }
+            );
+
+
+        cameraPreview.srcObject =
+            cameraStream;
+
+
+        cameraSection.style.display =
+            "block";
+
+
+        uploadStatus.innerText =
+            "Camera is ready. Position your face clearly.";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "Unable to access the camera. Please allow camera permission in your browser."
+        );
+
+
+        uploadStatus.innerText =
+            "Camera access was denied or unavailable.";
+
+    }
+
+}
+
+
+/* =========================================
+   CAPTURE PHOTO
+========================================= */
+
+function capturePhoto() {
+
+    if (!cameraStream) {
+
+        alert(
+            "Please open the camera first."
+        );
+
+        return;
+
+    }
+
+
+    const videoWidth =
+        cameraPreview.videoWidth;
+
+
+    const videoHeight =
+        cameraPreview.videoHeight;
+
+
+    if (
+        !videoWidth ||
+        !videoHeight
+    ) {
+
+        alert(
+            "Camera is not ready yet. Please wait a moment."
+        );
+
+        return;
+
+    }
+
+
+    capturedCanvas.width =
+        videoWidth;
+
+
+    capturedCanvas.height =
+        videoHeight;
+
+
+    const context =
+        capturedCanvas.getContext("2d");
+
+
+    context.drawImage(
+        cameraPreview,
+        0,
+        0,
+        videoWidth,
+        videoHeight
+    );
+
+
+    preview.src =
+        capturedCanvas.toDataURL(
+            "image/jpeg",
+            0.95
+        );
+
+
+    preview.style.display =
+        "block";
+
+
+    uploadStatus.innerText =
+        "Photo captured. You can retake it or use this photo.";
+
+}
+
+
+/* =========================================
+   RETAKE PHOTO
+========================================= */
+
+function retakePhoto() {
+
+    capturedFile = null;
+
+
+    preview.src = "";
+
+    preview.style.display =
+        "none";
+
+
+    uploadStatus.innerText =
+        "Camera is ready. Take another photo.";
+
+}
+
+
+/* =========================================
+   USE CAPTURED PHOTO
+========================================= */
+
+function useCapturedPhoto() {
+
+    if (
+        !capturedCanvas.width ||
+        !capturedCanvas.height
+    ) {
+
+        alert(
+            "Please capture a photo first."
+        );
+
+        return;
+
+    }
+
+
+    capturedCanvas.toBlob(
+
+        function (blob) {
+
+            if (!blob) {
+
+                alert(
+                    "Unable to create the captured photo."
+                );
+
+                return;
+
+            }
+
+
+            capturedFile =
+                new File(
+                    [blob],
+                    "camera-photo.jpg",
+                    {
+                        type: "image/jpeg"
+                    }
+                );
+
+
+            preview.src =
+                URL.createObjectURL(
+                    capturedFile
+                );
+
+
+            preview.style.display =
+                "block";
+
+
+            uploadStatus.innerText =
+                "Camera photo selected successfully.";
+
+        },
+
+        "image/jpeg",
+
+        0.95
+
+    );
+
+}
+
+
+/* =========================================
+   STOP CAMERA
+========================================= */
+
+function stopCamera() {
+
+    if (cameraStream) {
+
+        cameraStream
+            .getTracks()
+            .forEach(
+                function(track) {
+
+                    track.stop();
+
+                }
+            );
+
+
+        cameraStream = null;
+
+        cameraPreview.srcObject =
+            null;
+
+    }
+
+}
+
+
+/* =========================================
+   UPLOAD PHOTO
+========================================= */
+
+async function uploadPhoto() {
+
+
+    let file =
+        photoInput.files[0];
+
+
+    /*
+       If the user selected a camera photo,
+       use the captured file instead.
+    */
+
+    if (capturedFile) {
+
+        file = capturedFile;
+
+    }
+
+
+    if (!file) {
+
+        alert(
+            "Please choose a photo or use the camera first."
+        );
+
+        return;
+
+    }
+
+
+    continueButton.disabled =
+        true;
+
+
+    continueButton.innerText =
+        "Uploading...";
+
+
+    uploadStatus.innerText =
+        "Uploading your photo...";
+
+
+    try {
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "file",
+            file
+        );
+
+
+        const response =
+            await fetch(
+
+                backendURL +
+                "/upload-photo",
+
+                {
+                    method: "POST",
+                    body: formData
+                }
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (response.ok) {
+
+
+            console.log(result);
+
+
+            /* Save uploaded filename */
+
+            localStorage.setItem(
+                "uploadedPhoto",
+                result.filename
+            );
+
+
+            uploadStatus.innerText =
+                "Photo uploaded successfully!";
+
+
+            continueButton.innerText =
+                "Opening Analysis...";
+
+
+            /* Stop camera */
+
+            stopCamera();
+
+
+            /* Open analysis page */
+
+            setTimeout(
+
+                function () {
+
+                    window.location.href =
+                        "analysis.html";
+
+                },
+
+                500
+
+            );
+
+
+        }
+
+        else {
+
+
+            uploadStatus.innerText =
+                "Upload failed.";
+
+
+            alert(
+
+                result.detail ||
+                "Unable to upload the photo."
+
+            );
+
+
+            continueButton.disabled =
+                false;
+
+
+            continueButton.innerText =
+                "Continue to Analysis";
+
+        }
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(error);
+
+
+        uploadStatus.innerText =
+            "Could not connect to the backend.";
+
+
+        alert(
+
+            "Could not connect to the StyleSense AI backend."
+
+        );
+
+
+        continueButton.disabled =
+            false;
+
+
+        continueButton.innerText =
+            "Continue to Analysis";
+
+    }
+
+}
+
+
+/* =========================================
+   STOP CAMERA WHEN PAGE IS LEFT
+========================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function () {
+
+        stopCamera();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

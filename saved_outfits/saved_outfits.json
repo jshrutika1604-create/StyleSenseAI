@@ -1,0 +1,322 @@
+[
+    {
+        "id": "5dc71679-018f-4a81-8995-51752c95c1f1",
+        "outfit": {
+            "top": {
+                "id": "b216a9ad-18af-4507-aa76-cc5e5cbe4fb8",
+                "item_name": "White Floral Top",
+                "category": "Top",
+                "colour": "White",
+                "pattern": "Floral",
+                "style": "Casual",
+                "occasion": "College",
+                "season": "Summer",
+                "image": "b216a9ad-18af-4507-aa76-cc5e5cbe4fb8.webp"
+            },
+            "bottom": {
+                "id": "389d599f-8fa4-40c1-841b-fa25c14cb144",
+                "item_name": "Pants",
+                "category": "Bottom",
+                "colour": "Black",
+                "pattern": "Plain",
+                "style": "Casual",
+                "occasion": "Casual Outing",
+                "season": "All Season",
+                "image": "389d599f-8fa4-40c1-841b-fa25c14cb144.jpg"
+            },
+            "footwear": {
+                "id": "5c166e86-aa05-482e-a7d7-d6dff566fe17",
+                "item_name": "Heels",
+                "category": "Footwear",
+                "colour": "cream",
+                "pattern": "Plain",
+                "style": "Casual",
+                "occasion": "Office",
+                "season": "All Season",
+                "image": "5c166e86-aa05-482e-a7d7-d6dff566fe17.webp"
+            },
+            "accessory": {
+                "id": "d42eff09-19e4-4f20-b4d5-f371d8f709cc",
+                "item_name": "Bag",
+                "category": "HandBag",
+                "colour": "Black",
+                "pattern": "Other",
+                "style": "Casual",
+                "occasion": "College",
+                "season": "Summer",
+                "image": "d42eff09-19e4-4f20-b4d5-f371d8f709cc.webp"
+            }
+        },
+        "preferences": {
+            "occasion": "College",
+            "weather": "Pleasant",
+            "style": "Casual",
+            "colour": "Red",
+            "accessories": "Minimal",
+            "budget": "\u20b91,000\u2013\u20b93,000"
+        },
+        "score": 81,
+        "explanation": [
+            "Outfit compatibility score: 81/100.",
+            "Occasion considered: College.",
+            "Preferred style considered: Casual.",
+            "Preferred colour considered: Red.",
+            "Weather considered: Pleasant.",
+            "Accessory preference considered: Minimal.",
+            "White Floral Top was selected as top.",
+            "Why it was selected: it matches your College occasion, it matches your Casual style, White was used as a neutral alternative to your preferred Red.",
+            "White Floral Top is suitable for the selected Pleasant weather.",
+            "Pants was selected as bottom.",
+            "Why it was selected: its occasion is Casual Outing, it matches your Casual style, Black was used as a neutral alternative to your preferred Red.",
+            "Pants is suitable for the selected Pleasant weather.",
+            "Heels was selected as footwear.",
+            "Why it was selected: its occasion is Office, it matches your Casual style, cream was used as a neutral alternative to your preferred Red.",
+            "Heels is suitable for the selected Pleasant weather.",
+            "Bag was selected as accessory.",
+            "Why it was selected: it matches your College occasion, it matches your Casual style, Black was used as a neutral alternative to your preferred Red.",
+            "Bag is suitable for the selected Pleasant weather.",
+            "A simple accessory was included because you selected Minimal accessories.",
+            "The recommendation uses items available in your personal wardrobe."
+        ]
+    },
+    {
+        "id": "b9b89727-3554-47a6-8a0f-00e3a946c1f4",
+        "outfit": {
+            "top": {
+                "id": "b216a9ad-18af-4507-aa76-cc5e5cbe4fb8",
+                "item_name": "White Floral Top",
+                "category": "Top",
+                "colour": "White",
+                "pattern": "Floral",
+                "style": "Casual",
+                "occasion": "College",
+                "season": "Summer",
+                "image": "b216a9ad-18af-4507-aa76-cc5e5cbe4fb8.webp"
+            },
+            "bottom": {
+                "id": "389d599f-8fa4-40c1-841b-fa25c14cb144",
+                "item_name": "Pants",
+                "category": "Bottom",
+                "colour": "Black",
+                "pattern": "Plain",
+                "style": "Casual",
+                "occasion": "Casual Outing",
+                "season": "All Season",
+                "image": "389d599f-8fa4-40c1-841b-fa25c14cb144.jpg"
+            },
+            "footwear": {
+                "id": "c734c60b-97c1-40ac-b8a9-646bdd27792d",
+                "item_name": "Heels",
+                "category": "Footwear",
+                "colour": "Black",
+                "pattern": "Plain",
+                "style": "Formal",
+                "occasion": "Party",
+                "season": "All Season",
+                "image": "c734c60b-97c1-40ac-b8a9-646bdd27792d.jpg"
+            },
+            "accessory": {
+                "id": "d42eff09-19e4-4f20-b4d5-f371d8f709cc",
+                "item_name": "Bag",
+                "category": "HandBag",
+                "colour": "Black",
+                "pattern": "Other",
+                "style": "Casual",
+                "occasion": "College",
+                "season": "Summer",
+                "image": "d42eff09-19e4-4f20-b4d5-f371d8f709cc.webp"
+            }
+        },
+        "preferences": {
+            "occasion": "College",
+            "weather": "Pleasant",
+            "style": "Casual",
+            "colour": "Red",
+            "accessories": "Minimal",
+            "budget": "\u20b91,000\u2013\u20b93,000"
+        },
+        "score": 73,
+        "explanation": [
+            "Outfit compatibility score: 73/100.",
+            "This is an alternative outfit combination generated from your available wardrobe.",
+            "Occasion considered: College.",
+            "Preferred style considered: Casual.",
+            "Preferred colour considered: Red.",
+            "Weather considered: Pleasant.",
+            "Accessory preference considered: Minimal.",
+            "White Floral Top was selected as top.",
+            "Why it was selected: it matches your College occasion, it matches your Casual style, White was used as a neutral alternative to your preferred Red.",
+            "White Floral Top is suitable for the selected Pleasant weather.",
+            "Pants was selected as bottom.",
+            "Why it was selected: its occasion is Casual Outing, it matches your Casual style, Black was used as a neutral alternative to your preferred Red.",
+            "Pants is suitable for the selected Pleasant weather.",
+            "Heels was selected as footwear.",
+            "Why it was selected: its occasion is Party, its style is Formal, Black was used as a neutral alternative to your preferred Red.",
+            "Heels is suitable for the selected Pleasant weather.",
+            "Bag was selected as accessory.",
+            "Why it was selected: it matches your College occasion, it matches your Casual style, Black was used as a neutral alternative to your preferred Red.",
+            "Bag is suitable for the selected Pleasant weather.",
+            "A simple accessory was included because you selected Minimal accessories.",
+            "The recommendation uses items available in your personal wardrobe."
+        ]
+    },
+    {
+        "id": "b5828655-8f71-48cf-927c-4de70f210304",
+        "outfit": {
+            "one_piece": {
+                "id": "2af73b30-f2a6-4a9f-ac22-1c1e4929f044",
+                "item_name": "Lehenga",
+                "category": "Dress",
+                "colour": "Pink",
+                "pattern": "Embroidered",
+                "style": "Traditional",
+                "occasion": "Other",
+                "season": "Spring",
+                "image": "2af73b30-f2a6-4a9f-ac22-1c1e4929f044.webp"
+            },
+            "footwear": {
+                "id": "5c166e86-aa05-482e-a7d7-d6dff566fe17",
+                "item_name": "Heels",
+                "category": "Footwear",
+                "colour": "cream",
+                "pattern": "Plain",
+                "style": "Casual",
+                "occasion": "Office",
+                "season": "All Season",
+                "image": "5c166e86-aa05-482e-a7d7-d6dff566fe17.webp"
+            },
+            "bag": {
+                "id": "d42eff09-19e4-4f20-b4d5-f371d8f709cc",
+                "item_name": "Bag",
+                "category": "HandBag",
+                "colour": "Black",
+                "pattern": "Other",
+                "style": "Casual",
+                "occasion": "College",
+                "season": "Summer",
+                "image": "d42eff09-19e4-4f20-b4d5-f371d8f709cc.webp"
+            }
+        },
+        "preferences": {
+            "occasion": "College",
+            "weather": "Pleasant",
+            "style": "Casual",
+            "colour": "Red",
+            "accessories": "Minimal",
+            "budget": "\u20b91,000\u2013\u20b93,000"
+        },
+        "score": -20,
+        "explanation": [
+            "StyleSense AI used Lehenga as the main item for this look.",
+            "Lehenga is treated as a complete outfit item, so no separate bottom was added.",
+            "Additional items were selected from your personal wardrobe based on colour, style and occasion compatibility.",
+            "The selected occasion was College.",
+            "Your preferred style was Casual.",
+            "The selected weather was Pleasant.",
+            "Heels was selected as footwear because it complements the selected Lehenga.",
+            "Bag was selected as bag because it complements the selected Lehenga."
+        ]
+    },
+    {
+        "id": "e62770bd-2fc5-4744-919b-e668abc066c0",
+        "outfit": {
+            "one_piece": {
+                "id": "33840984-c6cf-4b25-a031-419e30076e6b",
+                "item_name": "saree",
+                "category": "Saree",
+                "colour": "purple",
+                "image": "33840984-c6cf-4b25-a031-419e30076e6b.jpg",
+                "pattern": "simple",
+                "style": "party",
+                "occasion": "reception",
+                "season": "winter"
+            },
+            "footwear": {
+                "id": "c734c60b-97c1-40ac-b8a9-646bdd27792d",
+                "item_name": "Heels",
+                "category": "Footwear",
+                "colour": "Black",
+                "pattern": "Plain",
+                "style": "Formal",
+                "occasion": "Party",
+                "season": "All Season",
+                "image": "c734c60b-97c1-40ac-b8a9-646bdd27792d.jpg"
+            },
+            "bag": {
+                "id": "d42eff09-19e4-4f20-b4d5-f371d8f709cc",
+                "item_name": "Bag",
+                "category": "HandBag",
+                "colour": "Black",
+                "pattern": "Other",
+                "style": "Casual",
+                "occasion": "College",
+                "season": "Summer",
+                "image": "d42eff09-19e4-4f20-b4d5-f371d8f709cc.webp"
+            }
+        },
+        "preferences": {
+            "occasion": "College",
+            "weather": "Pleasant",
+            "style": "Casual",
+            "colour": "Red",
+            "accessories": "Minimal",
+            "budget": "\u20b91,000\u2013\u20b93,000"
+        },
+        "score": 28,
+        "explanation": [
+            "StyleSense AI used saree as the main item for this look.",
+            "saree is treated as a complete outfit item, so no separate bottom was added.",
+            "Additional items were selected from your personal wardrobe based on colour, style and occasion compatibility.",
+            "The selected occasion was College.",
+            "Your preferred style was Casual.",
+            "The selected weather was Pleasant.",
+            "Heels was selected as footwear because it complements the selected saree.",
+            "Bag was selected as bag because it complements the selected saree."
+        ]
+    },
+    {
+        "id": "42e78b2e-3dd4-4430-845d-00f2c005e7ed",
+        "outfit": {
+            "one_piece": {
+                "id": "33840984-c6cf-4b25-a031-419e30076e6b",
+                "item_name": "saree",
+                "category": "Saree",
+                "colour": "purple",
+                "image": "33840984-c6cf-4b25-a031-419e30076e6b.jpg",
+                "pattern": "simple",
+                "style": "party",
+                "occasion": "reception",
+                "season": "winter"
+            },
+            "footwear": {
+                "id": "5c166e86-aa05-482e-a7d7-d6dff566fe17",
+                "item_name": "Heels",
+                "category": "Footwear",
+                "colour": "cream",
+                "pattern": "Plain",
+                "style": "Casual",
+                "occasion": "Office",
+                "season": "All Season",
+                "image": "5c166e86-aa05-482e-a7d7-d6dff566fe17.webp"
+            }
+        },
+        "preferences": {
+            "occasion": "College",
+            "weather": "Pleasant",
+            "style": "Casual",
+            "colour": "Red",
+            "accessories": "Minimal",
+            "budget": "\u20b91,000\u2013\u20b93,000"
+        },
+        "score": -20,
+        "explanation": [
+            "StyleSense AI used saree as the main item for this look.",
+            "saree is treated as a complete outfit item, so no separate bottom was added.",
+            "Additional items were selected from your personal wardrobe based on colour, style and occasion compatibility.",
+            "The selected occasion was College.",
+            "Your preferred style was Casual.",
+            "The selected weather was Pleasant.",
+            "Heels was selected as footwear because it complements the selected saree."
+        ]
+    }
+]

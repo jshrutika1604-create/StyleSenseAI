@@ -1,0 +1,8 @@
+{
+    "face_detected": true,
+    "face_count": 1,
+    "skin_tone": "Medium",
+    "hair_colour": "Medium Brown",
+    "face_shape": "Round / Broad",
+    "overall_appearance": "Face detected successfully. Estimated skin tone: Medium. Estimated hair colour: Medium Brown. Estimated face shape: Round / Broad. These appearance characteristics can be used as supporting information for personalized fashion recommendations."
+}

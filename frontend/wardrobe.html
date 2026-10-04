@@ -1,0 +1,3519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StyleSense AI - Smart Wardrobe</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f8f5f2;
+    color: #2d2d2d;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: white;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    font-weight: normal;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 35px;
+}
+
+
+/* =================================
+   ADD ITEM SECTION
+================================= */
+
+.add-section {
+    background: #f7f7f7;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.add-section h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.add-button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 25px;
+    background: #2d2d2d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background: #555;
+}
+
+.add-button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+#status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* =================================
+   WARDROBE GRID
+================================= */
+
+.wardrobe-title {
+    margin-bottom: 20px;
+}
+
+.wardrobe-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+}
+
+
+/* =================================
+   WARDROBE CARD
+================================= */
+
+.wardrobe-card {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    transition: transform 0.2s;
+}
+
+.wardrobe-card:hover {
+    transform: translateY(-3px);
+}
+
+.item-image {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    background: #f1f1f1;
+    display: block;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.item-info {
+    padding: 15px;
+}
+
+.item-info h3 {
+    margin-bottom: 7px;
+}
+
+.item-info p {
+    color: #666;
+    margin-bottom: 4px;
+}
+
+
+/* =================================
+   EMPTY MESSAGE
+================================= */
+
+.empty-message {
+    text-align: center;
+    color: #777;
+    padding: 30px;
+}
+
+
+/* =================================
+   CONTINUE BUTTON
+================================= */
+
+.continue-button {
+    width: 100%;
+    margin-top: 40px;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background: #2d2d2d;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.continue-button:hover {
+    background: #555;
+}
+
+
+/* =================================
+   DELETE WARDROBE BUTTON
+================================= */
+
+.delete-item-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #dc3545;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.delete-item-button:hover {
+    background: #b02a37;
+}
+
+.delete-item-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =================================
+   EDIT WARDROBE BUTTON
+================================= */
+
+.edit-item-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #000000;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-item-button:hover {
+    background: #555;
+}
+
+.edit-item-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =================================
+   COMPLETE MY LOOK BUTTON
+================================= */
+
+.complete-look-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 11px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #6f42c1;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+/* =================================
+   SAVE COMPLETE LOOK BUTTON
+================================= */
+
+.save-complete-look-button {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 25px;
+    background: #6f42c1;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+/* =================================
+   GENERATE ANOTHER COMPLETE LOOK
+================================= */
+
+.generate-another-look-button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 12px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #333;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+}
+
+
+.generate-another-look-button:hover {
+
+    background: #555;
+
+}
+
+
+.generate-another-look-button:active {
+
+    transform: scale(0.98);
+
+}
+
+.save-complete-look-button:hover {
+    background: #56329a;
+}
+
+.save-complete-look-button:active {
+    transform: scale(0.98);
+}
+.complete-look-button:hover {
+    background: #56329a;
+}
+
+.complete-look-button:active {
+    transform: scale(0.98);
+}
+
+.complete-look-button:disabled {
+    background: #999;
+    cursor: not-allowed;
+}
+
+
+/* =================================
+   WARDROBE ACTION BUTTONS
+================================= */
+
+.wardrobe-action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.wardrobe-action-buttons .edit-item-button,
+.wardrobe-action-buttons .delete-item-button {
+    flex: 1;
+    width: auto;
+    margin-top: 12px;
+}
+
+
+/* =================================
+   WARDROBE SEARCH & FILTERS
+================================= */
+
+.wardrobe-filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 20px 0 30px;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 12px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 7px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: white;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.search-group {
+    grid-column: span 1;
+}
+
+
+/* =================================
+   EDIT WARDROBE MODAL
+================================= */
+
+.edit-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.edit-modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.edit-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.edit-modal-content .form-group {
+    margin-bottom: 15px;
+}
+
+.edit-modal-content label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.edit-modal-content input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.edit-modal-content input:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.edit-modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.save-edit-button,
+.cancel-edit-button {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-edit-button {
+    background: #28a745;
+    color: white;
+}
+
+.save-edit-button:hover {
+    background: #218838;
+}
+
+.cancel-edit-button {
+    background: #6c757d;
+    color: white;
+}
+
+.cancel-edit-button:hover {
+    background: #5a6268;
+}
+
+
+/* =================================
+   COMPLETE MY LOOK MODAL
+================================= */
+
+.complete-look-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.complete-look-content {
+    background: white;
+    width: 100%;
+    max-width: 900px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.complete-look-content h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.complete-look-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+
+/* =================================
+   COMPLETE LOOK SCORE
+================================= */
+
+.complete-look-score {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.score-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #6f42c1;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.score-label {
+    font-size: 14px;
+    color: #666;
+}
+
+
+/* =================================
+   COMPLETE LOOK ITEMS
+================================= */
+
+.complete-look-items {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(170px, 1fr));
+
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.complete-look-item {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.complete-look-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    background: #f1f1f1;
+    padding: 8px;
+}
+
+.complete-look-item-info {
+    padding: 12px;
+}
+
+.complete-look-item-info h4 {
+    margin-bottom: 7px;
+}
+
+.complete-look-item-info p {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.main-look-item {
+    border: 2px solid #6f42c1;
+}
+
+
+/* =================================
+   EXPLANATION
+================================= */
+
+.complete-look-explanation {
+    background: #f7f3fb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.complete-look-explanation h3 {
+    margin-bottom: 12px;
+}
+
+.complete-look-explanation ul {
+    padding-left: 22px;
+}
+
+.complete-look-explanation li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+
+/* =================================
+   CLOSE BUTTON
+================================= */
+
+.close-complete-look-button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 25px;
+    background: #2d2d2d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.close-complete-look-button:hover {
+    background: #555;
+}
+
+
+/* =================================
+   LOADING MESSAGE
+================================= */
+
+.complete-look-loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 17px;
+}
+
+
+/* =================================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 900px) {
+
+    .wardrobe-filters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 20px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 25px;
+    }
+
+    .complete-look-content {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .wardrobe-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .complete-look-items {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .wardrobe-action-buttons {
+        flex-direction: column;
+    }
+
+    .wardrobe-action-buttons .edit-item-button,
+    .wardrobe-action-buttons .delete-item-button {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<div class="logo">
+Style<span>Sense AI</span>
+</div>
+
+</nav>
+
+
+<div class="container">
+
+
+<h1>Smart Wardrobe</h1>
+
+<p class="subtitle">
+
+Add your clothing items so StyleSense AI can create
+personalized outfits using your own wardrobe.
+
+</p>
+
+
+<!-- =================================
+     ADD ITEM
+================================= -->
+
+<div class="add-section">
+
+<h2>Add New Clothing Item</h2>
+
+
+<div class="form-group">
+
+<label for="itemName">
+Item Name
+</label>
+
+<input
+type="text"
+id="itemName"
+placeholder="Example: Red T-Shirt"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="category">
+Category
+</label>
+
+<select id="category" onchange="handleCustomCategory()">
+
+<option value="">
+Select Category
+</option>
+
+<option value="Top">
+Tops
+</option>
+
+<option value="Bottom">
+Bottoms
+</option>
+
+<option value="Dress">
+Dresses
+</option>
+
+<option value="Saree">
+Sarees
+</option>
+
+<option value="Kurti">
+Kurtis
+</option>
+
+<option value="Shoes">
+Shoes
+</option>
+
+<option value="Jewellery">
+Jewellery
+</option>
+
+<option value="Bag">
+Bags
+</option>
+
+<option value="Sunglasses">
+Sunglasses
+</option>
+
+<option value="Watch">
+Watches
+</option>
+
+<option value="Accessory">
+Accessories
+</option>
+
+<option value="Other">
+Other / Custom
+</option>
+
+</select>
+
+
+<div
+id="customCategoryBox"
+style="display: none; margin-top: 10px;"
+>
+
+<input
+type="text"
+id="customCategory"
+placeholder="Enter your custom category"
+>
+
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="colour">
+Colour
+</label>
+
+<input
+type="text"
+id="colour"
+placeholder="Example: Red"
+>
+
+</div>
+
+
+<!-- Pattern -->
+
+<div class="form-group">
+
+<label for="pattern">
+Pattern
+</label>
+
+<select id="pattern">
+
+<option value="">
+Select Pattern
+</option>
+
+<option value="Plain">
+Plain
+</option>
+
+<option value="Striped">
+Striped
+</option>
+
+<option value="Checked">
+Checked
+</option>
+
+<option value="Floral">
+Floral
+</option>
+
+<option value="Printed">
+Printed
+</option>
+
+<option value="Polka Dot">
+Polka Dot
+</option>
+
+<option value="Embroidered">
+Embroidered
+</option>
+
+<option value="Geometric">
+Geometric
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<!-- Style -->
+
+<div class="form-group">
+
+<label for="itemStyle">
+Style
+</label>
+
+<select id="itemStyle">
+
+<option value="">
+Select Style
+</option>
+
+<option value="Casual">
+Casual
+</option>
+
+<option value="Formal">
+Formal
+</option>
+
+<option value="Traditional">
+Traditional
+</option>
+
+<option value="Party">
+Party
+</option>
+
+<option value="Sporty">
+Sporty
+</option>
+
+<option value="Ethnic">
+Ethnic
+</option>
+
+<option value="Western">
+Western
+</option>
+
+<option value="Minimal">
+Minimal
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<!-- Occasion -->
+
+<div class="form-group">
+
+<label for="occasion">
+Suitable Occasion
+</label>
+
+<select id="occasion">
+
+<option value="">
+Select Occasion
+</option>
+
+<option value="College">
+College
+</option>
+
+<option value="Office">
+Office
+</option>
+
+<option value="Casual Outing">
+Casual Outing
+</option>
+
+<option value="Party">
+Party
+</option>
+
+<option value="Wedding">
+Wedding
+</option>
+
+<option value="Traditional Event">
+Traditional Event
+</option>
+
+<option value="Date">
+Date
+</option>
+
+<option value="Travel">
+Travel
+</option>
+
+<option value="Sports">
+Sports
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+</div>
+
+
+<!-- Season -->
+
+<div class="form-group">
+
+<label for="season">
+Season
+</label>
+
+<select id="season">
+
+<option value="">
+Select Season
+</option>
+
+<option value="Summer">
+Summer
+</option>
+
+<option value="Winter">
+Winter
+</option>
+
+<option value="Monsoon">
+Monsoon
+</option>
+
+<option value="Spring">
+Spring
+</option>
+
+<option value="Autumn">
+Autumn
+</option>
+
+<option value="All Season">
+All Season
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="itemPhoto">
+Clothing Photo
+</label>
+
+<input
+type="file"
+id="itemPhoto"
+accept="image/*"
+>
+
+</div>
+
+
+<button
+class="add-button"
+id="addButton"
+onclick="addItem()"
+>
+
+Add Item to Wardrobe
+
+</button>
+
+
+<div id="status"></div>
+
+</div>
+
+
+<!-- =================================
+     WARDROBE
+================================= -->
+
+<h2 class="wardrobe-title">
+My Wardrobe
+</h2>
+
+
+<!-- =================================
+     SEARCH & FILTERS
+================================= -->
+
+<div class="wardrobe-filters">
+
+
+<div class="filter-group search-group">
+
+<label for="wardrobeSearch">
+🔎 Search Wardrobe
+</label>
+
+<input
+type="text"
+id="wardrobeSearch"
+placeholder="Search by item name, colour, category..."
+oninput="filterWardrobe()"
+>
+
+</div>
+
+
+<div class="filter-group">
+
+<label for="filterCategory">
+Category
+</label>
+
+<select
+id="filterCategory"
+onchange="filterWardrobe()"
+>
+
+<option value="">
+All Categories
+</option>
+
+</select>
+
+</div>
+
+
+<div class="filter-group">
+
+<label for="filterStyle">
+Style
+</label>
+
+<select
+id="filterStyle"
+onchange="filterWardrobe()"
+>
+
+<option value="">
+All Styles
+</option>
+
+<option value="Casual">
+Casual
+</option>
+
+<option value="Formal">
+Formal
+</option>
+
+<option value="Traditional">
+Traditional
+</option>
+
+<option value="Party">
+Party
+</option>
+
+<option value="Sporty">
+Sporty
+</option>
+
+<option value="Ethnic">
+Ethnic
+</option>
+
+<option value="Western">
+Western
+</option>
+
+<option value="Minimal">
+Minimal
+</option>
+
+</select>
+
+</div>
+
+
+<div class="filter-group">
+
+<label for="filterOccasion">
+Occasion
+</label>
+
+<select
+id="filterOccasion"
+onchange="filterWardrobe()"
+>
+
+<option value="">
+All Occasions
+</option>
+
+<option value="College">
+College
+</option>
+
+<option value="Office">
+Office
+</option>
+
+<option value="Casual Outing">
+Casual Outing
+</option>
+
+<option value="Party">
+Party
+</option>
+
+<option value="Wedding">
+Wedding
+</option>
+
+<option value="Traditional Event">
+Traditional Event
+</option>
+
+<option value="Date">
+Date
+</option>
+
+<option value="Travel">
+Travel
+</option>
+
+<option value="Sports">
+Sports
+</option>
+
+</select>
+
+</div>
+
+
+<div class="filter-group">
+
+<label for="filterSeason">
+Season
+</label>
+
+<select
+id="filterSeason"
+onchange="filterWardrobe()"
+>
+
+<option value="">
+All Seasons
+</option>
+
+<option value="Summer">
+Summer
+</option>
+
+<option value="Winter">
+Winter
+</option>
+
+<option value="Monsoon">
+Monsoon
+</option>
+
+<option value="Spring">
+Spring
+</option>
+
+<option value="Autumn">
+Autumn
+</option>
+
+<option value="All Season">
+All Season
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<!-- =================================
+     WARDROBE GRID
+================================= -->
+
+<div
+id="wardrobeGrid"
+class="wardrobe-grid"
+>
+</div>
+
+
+<button
+class="continue-button"
+onclick="continueToPreferences()"
+>
+
+Continue to Style Preferences
+
+</button>
+
+
+</div>
+
+
+<!-- =========================================
+     EDIT WARDROBE ITEM FORM
+========================================= -->
+
+<div id="editItemModal" class="edit-modal">
+
+<div class="edit-modal-content">
+
+<h2>
+✏️ Edit Wardrobe Item
+</h2>
+
+<input
+type="hidden"
+id="editItemId"
+>
+
+
+<div class="form-group">
+
+<label for="editItemName">
+Item Name
+</label>
+
+<input
+type="text"
+id="editItemName"
+placeholder="Enter item name"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="editCategory">
+Category
+</label>
+
+<input
+type="text"
+id="editCategory"
+placeholder="Enter category"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="editColour">
+Colour
+</label>
+
+<input
+type="text"
+id="editColour"
+placeholder="Enter colour"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="editPattern">
+Pattern
+</label>
+
+<input
+type="text"
+id="editPattern"
+placeholder="Enter pattern"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="editStyle">
+Style
+</label>
+
+<input
+type="text"
+id="editStyle"
+placeholder="Enter style"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="editOccasion">
+Occasion
+</label>
+
+<input
+type="text"
+id="editOccasion"
+placeholder="Enter occasion"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label for="editSeason">
+Season
+</label>
+
+<input
+type="text"
+id="editSeason"
+placeholder="Enter season"
+>
+
+</div>
+
+
+<div class="edit-modal-buttons">
+
+<button
+type="button"
+class="save-edit-button"
+onclick="saveEditedItem()"
+>
+
+💾 Save Changes
+
+</button>
+
+
+<button
+type="button"
+class="cancel-edit-button"
+onclick="closeEditForm()"
+>
+
+✖ Cancel
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================
+     COMPLETE MY LOOK MODAL
+========================================= -->
+
+<div
+id="completeLookModal"
+class="complete-look-modal"
+>
+
+<div class="complete-look-content">
+
+<h2>
+✨ Complete My Look
+</h2>
+
+<p class="complete-look-subtitle">
+StyleSense AI selected additional items from your wardrobe
+to complete your look.
+</p>
+
+
+<div id="completeLookBody">
+
+<div class="complete-look-loading">
+Generating your complete look...
+</div>
+
+</div>
+
+
+<button
+class="close-complete-look-button"
+onclick="closeCompleteLook()"
+>
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+const backendURL =
+    "http://127.0.0.1:8000";
+
+let currentCompleteLook = null;
+
+
+/* =================================
+   CUSTOM CATEGORY
+================================= */
+
+function handleCustomCategory() {
+
+    const category =
+        document.getElementById("category").value;
+
+    const customCategoryBox =
+        document.getElementById("customCategoryBox");
+
+    const customCategory =
+        document.getElementById("customCategory");
+
+    if (category === "Other") {
+
+        customCategoryBox.style.display =
+            "block";
+
+        customCategory.focus();
+
+    } else {
+
+        customCategoryBox.style.display =
+            "none";
+
+        customCategory.value = "";
+
+    }
+}
+
+
+/* =================================
+   LOAD WARDROBE
+================================= */
+
+async function loadWardrobe() {
+
+    const grid =
+        document.getElementById("wardrobeGrid");
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL + "/wardrobe"
+            );
+
+        const result =
+            await response.json();
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load wardrobe."
+            );
+
+        }
+
+
+        /* =========================================
+           UPDATE CATEGORY FILTER DYNAMICALLY
+        ========================================= */
+
+        const categoryFilter =
+            document.getElementById("filterCategory");
+
+        if (categoryFilter) {
+
+            const categories = [
+                ...new Set(
+                    result.items
+                        .map(item => item.category)
+                        .filter(
+                            category =>
+                                category &&
+                                category.trim() !== ""
+                        )
+                )
+            ];
+
+            categoryFilter.innerHTML =
+                '<option value="">All Categories</option>';
+
+            categories.sort().forEach(
+                category => {
+
+                    const option =
+                        document.createElement("option");
+
+                    option.value =
+                        category;
+
+                    option.textContent =
+                        category;
+
+                    categoryFilter.appendChild(
+                        option
+                    );
+
+                }
+            );
+        }
+
+
+        grid.innerHTML = "";
+
+
+        if (result.items.length === 0) {
+
+            grid.innerHTML = `
+
+                <div class="empty-message">
+
+                    Your wardrobe is empty.
+                    Add your first clothing item above.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        result.items.forEach(
+            function(item) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "wardrobe-card";
+
+
+                card.dataset.itemName =
+                    item.item_name || "";
+
+                card.dataset.category =
+                    item.category || "";
+
+                card.dataset.colour =
+                    item.colour || "";
+
+                card.dataset.pattern =
+                    item.pattern || "";
+
+                card.dataset.style =
+                    item.style || "";
+
+                card.dataset.occasion =
+                    item.occasion || "";
+
+                card.dataset.season =
+                    item.season || "";
+
+
+                card.innerHTML = `
+
+                    <img
+                        class="item-image"
+                        src="${backendURL}/wardrobe-images/${item.image}"
+                        alt="${item.item_name}"
+                    >
+
+                    <div class="item-info">
+
+                        <h3>
+                            ${item.item_name}
+                        </h3>
+
+                        <p>
+                            <strong>Category:</strong>
+                            ${item.category}
+                        </p>
+
+                        <p>
+                            <strong>Colour:</strong>
+                            ${item.colour}
+                        </p>
+
+                        <p>
+                            <strong>Pattern:</strong>
+                            ${item.pattern || "Not specified"}
+                        </p>
+
+                        <p>
+                            <strong>Style:</strong>
+                            ${item.style || "Not specified"}
+                        </p>
+
+                        <p>
+                            <strong>Occasion:</strong>
+                            ${item.occasion || "Not specified"}
+                        </p>
+
+                        <p>
+                            <strong>Season:</strong>
+                            ${item.season || "Not specified"}
+                        </p>
+
+
+                        <!-- COMPLETE MY LOOK -->
+
+                        <button
+                            class="complete-look-button"
+                            onclick="completeMyLook('${item.id}')"
+                        >
+
+                            ✨ Complete My Look
+
+                        </button>
+
+
+                        <div class="wardrobe-action-buttons">
+
+                            <button
+                                class="edit-item-button"
+                                onclick="editWardrobeItem('${item.id}')"
+                            >
+
+                                ✏️ Edit
+
+                            </button>
+
+
+                            <button
+                                class="delete-item-button"
+                                onclick="deleteWardrobeItem('${item.id}')"
+                            >
+
+                                🗑️ Delete
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                grid.appendChild(card);
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        grid.innerHTML = `
+
+            <div class="empty-message">
+
+                Could not load your wardrobe.
+                Please make sure the backend is running.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =================================
+   FILTER WARDROBE
+================================= */
+
+function filterWardrobe() {
+
+    const searchText =
+        document
+            .getElementById("wardrobeSearch")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const selectedCategory =
+        document
+            .getElementById("filterCategory")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const selectedStyle =
+        document
+            .getElementById("filterStyle")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const selectedOccasion =
+        document
+            .getElementById("filterOccasion")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const selectedSeason =
+        document
+            .getElementById("filterSeason")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    const cards =
+        document.querySelectorAll(
+            ".wardrobe-card"
+        );
+
+
+    cards.forEach(
+        function(card) {
+
+            const itemName =
+                (
+                    card.dataset.itemName ||
+                    ""
+                ).toLowerCase();
+
+
+            const category =
+                (
+                    card.dataset.category ||
+                    ""
+                ).toLowerCase();
+
+
+            const colour =
+                (
+                    card.dataset.colour ||
+                    ""
+                ).toLowerCase();
+
+
+            const pattern =
+                (
+                    card.dataset.pattern ||
+                    ""
+                ).toLowerCase();
+
+
+            const style =
+                (
+                    card.dataset.style ||
+                    ""
+                ).toLowerCase();
+
+
+            const occasion =
+                (
+                    card.dataset.occasion ||
+                    ""
+                ).toLowerCase();
+
+
+            const season =
+                (
+                    card.dataset.season ||
+                    ""
+                ).toLowerCase();
+
+
+            const searchMatch =
+                !searchText ||
+                itemName.includes(searchText) ||
+                category.includes(searchText) ||
+                colour.includes(searchText) ||
+                pattern.includes(searchText) ||
+                style.includes(searchText) ||
+                occasion.includes(searchText) ||
+                season.includes(searchText);
+
+
+            const categoryMatch =
+                !selectedCategory ||
+                category === selectedCategory;
+
+
+            const styleMatch =
+                !selectedStyle ||
+                style === selectedStyle;
+
+
+            const occasionMatch =
+                !selectedOccasion ||
+                occasion === selectedOccasion;
+
+
+            const seasonMatch =
+                !selectedSeason ||
+                season === selectedSeason;
+
+
+            if (
+                searchMatch &&
+                categoryMatch &&
+                styleMatch &&
+                occasionMatch &&
+                seasonMatch
+            ) {
+
+                card.style.display = "";
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        }
+    );
+}
+
+
+/* =================================
+   ADD ITEM
+================================= */
+
+async function addItem() {
+
+    const itemName =
+        document
+            .getElementById("itemName")
+            .value
+            .trim();
+
+
+    let category =
+        document
+            .getElementById("category")
+            .value;
+
+
+    const colour =
+        document
+            .getElementById("colour")
+            .value
+            .trim();
+
+
+    const pattern =
+        document
+            .getElementById("pattern")
+            .value;
+
+
+    const itemStyle =
+        document
+            .getElementById("itemStyle")
+            .value;
+
+
+    const occasion =
+        document
+            .getElementById("occasion")
+            .value;
+
+
+    const season =
+        document
+            .getElementById("season")
+            .value;
+
+
+    const customCategory =
+        document
+            .getElementById("customCategory")
+            .value
+            .trim();
+
+
+    const photo =
+        document
+            .getElementById("itemPhoto")
+            .files[0];
+
+
+    const status =
+        document
+            .getElementById("status");
+
+
+    const addButton =
+        document
+            .getElementById("addButton");
+
+
+    /* VALIDATION */
+
+    if (!itemName) {
+
+        alert(
+            "Please enter the item name."
+        );
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        alert(
+            "Please select a category."
+        );
+
+        return;
+
+    }
+
+
+    if (category === "Other") {
+
+        if (!customCategory) {
+
+            alert(
+                "Please enter your custom category."
+            );
+
+            return;
+
+        }
+
+        category =
+            customCategory;
+
+    }
+
+
+    if (!colour) {
+
+        alert(
+            "Please enter the colour."
+        );
+
+        return;
+
+    }
+
+
+    if (!photo) {
+
+        alert(
+            "Please select a clothing photo."
+        );
+
+        return;
+
+    }
+
+
+    addButton.disabled = true;
+
+    addButton.innerText =
+        "Adding Item...";
+
+
+    status.innerText =
+        "Uploading clothing item...";
+
+
+    try {
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "item_name",
+            itemName
+        );
+
+
+        formData.append(
+            "category",
+            category
+        );
+
+
+        formData.append(
+            "colour",
+            colour
+        );
+
+
+        formData.append(
+            "pattern",
+            pattern
+        );
+
+
+        formData.append(
+            "style",
+            itemStyle
+        );
+
+
+        formData.append(
+            "occasion",
+            occasion
+        );
+
+
+        formData.append(
+            "season",
+            season
+        );
+
+
+        formData.append(
+            "file",
+            photo
+        );
+
+
+        const response =
+            await fetch(
+                backendURL +
+                "/wardrobe-item",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to add item."
+            );
+
+        }
+
+
+        status.innerText =
+            "✅ Item added successfully!";
+
+
+        document.getElementById(
+            "itemName"
+        ).value = "";
+
+
+        document.getElementById(
+            "category"
+        ).value = "";
+
+
+        document.getElementById(
+            "colour"
+        ).value = "";
+
+
+        document.getElementById(
+            "pattern"
+        ).value = "";
+
+
+        document.getElementById(
+            "itemStyle"
+        ).value = "";
+
+
+        document.getElementById(
+            "occasion"
+        ).value = "";
+
+
+        document.getElementById(
+            "season"
+        ).value = "";
+
+
+        document.getElementById(
+            "customCategory"
+        ).value = "";
+
+
+        document.getElementById(
+            "customCategoryBox"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "itemPhoto"
+        ).value = "";
+
+
+        await loadWardrobe();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.innerText =
+            "❌ Could not add the item.";
+
+        alert(
+            error.message
+        );
+
+
+    } finally {
+
+        addButton.disabled =
+            false;
+
+        addButton.innerText =
+            "Add Item to Wardrobe";
+
+    }
+
+}
+
+
+/* =================================
+   CONTINUE
+================================= */
+
+function continueToPreferences() {
+
+    window.location.href =
+        "preferences.html";
+
+}
+
+
+/* =================================
+   DELETE WARDROBE ITEM
+================================= */
+
+async function deleteWardrobeItem(itemId) {
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to delete this wardrobe item?"
+        );
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/wardrobe-item/" +
+                itemId,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to delete wardrobe item."
+            );
+
+        }
+
+
+        alert(
+            "Wardrobe item deleted successfully."
+        );
+
+
+        await loadWardrobe();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   OPEN EDIT WARDROBE ITEM FORM
+========================================= */
+
+async function editWardrobeItem(itemId) {
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/wardrobe"
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to load wardrobe."
+            );
+
+        }
+
+
+        const item =
+            result.items.find(
+                wardrobeItem =>
+                    wardrobeItem.id === itemId
+            );
+
+
+        if (!item) {
+
+            alert(
+                "Wardrobe item not found."
+            );
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "editItemId"
+        ).value =
+            item.id;
+
+
+        document.getElementById(
+            "editItemName"
+        ).value =
+            item.item_name || "";
+
+
+        document.getElementById(
+            "editCategory"
+        ).value =
+            item.category || "";
+
+
+        document.getElementById(
+            "editColour"
+        ).value =
+            item.colour || "";
+
+
+        document.getElementById(
+            "editPattern"
+        ).value =
+            item.pattern || "";
+
+
+        document.getElementById(
+            "editStyle"
+        ).value =
+            item.style || "";
+
+
+        document.getElementById(
+            "editOccasion"
+        ).value =
+            item.occasion || "";
+
+
+        document.getElementById(
+            "editSeason"
+        ).value =
+            item.season || "";
+
+
+        document.getElementById(
+            "editItemModal"
+        ).style.display =
+            "flex";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   SAVE EDITED WARDROBE ITEM
+========================================= */
+
+async function saveEditedItem() {
+
+    const itemId =
+        document
+            .getElementById("editItemId")
+            .value;
+
+
+    const itemName =
+        document
+            .getElementById("editItemName")
+            .value
+            .trim();
+
+
+    const category =
+        document
+            .getElementById("editCategory")
+            .value
+            .trim();
+
+
+    const colour =
+        document
+            .getElementById("editColour")
+            .value
+            .trim();
+
+
+    const pattern =
+        document
+            .getElementById("editPattern")
+            .value
+            .trim();
+
+
+    const style =
+        document
+            .getElementById("editStyle")
+            .value
+            .trim();
+
+
+    const occasion =
+        document
+            .getElementById("editOccasion")
+            .value
+            .trim();
+
+
+    const season =
+        document
+            .getElementById("editSeason")
+            .value
+            .trim();
+
+
+    if (!itemName) {
+
+        alert(
+            "Please enter the item name."
+        );
+
+        return;
+
+    }
+
+
+    if (!category) {
+
+        alert(
+            "Please enter the category."
+        );
+
+        return;
+
+    }
+
+
+    if (!colour) {
+
+        alert(
+            "Please enter the colour."
+        );
+
+        return;
+
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "item_name",
+        itemName
+    );
+
+
+    formData.append(
+        "category",
+        category
+    );
+
+
+    formData.append(
+        "colour",
+        colour
+    );
+
+
+    formData.append(
+        "pattern",
+        pattern
+    );
+
+
+    formData.append(
+        "style",
+        style
+    );
+
+
+    formData.append(
+        "occasion",
+        occasion
+    );
+
+
+    formData.append(
+        "season",
+        season
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/wardrobe-item/" +
+                itemId,
+                {
+                    method: "PUT",
+                    body: formData
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to update wardrobe item."
+            );
+
+        }
+
+
+        alert(
+            "Wardrobe item updated successfully!"
+        );
+
+
+        closeEditForm();
+
+
+        await loadWardrobe();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   CLOSE EDIT FORM
+========================================= */
+
+function closeEditForm() {
+
+    document.getElementById(
+        "editItemModal"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   COMPLETE MY LOOK
+========================================= */
+
+async function completeMyLook(itemId) {
+
+    const modal =
+        document.getElementById(
+            "completeLookModal"
+        );
+
+
+    const body =
+        document.getElementById(
+            "completeLookBody"
+        );
+
+
+    modal.style.display =
+        "flex";
+
+
+    body.innerHTML = `
+
+        <div class="complete-look-loading">
+
+            ✨ Generating your complete look...
+
+        </div>
+
+    `;
+
+
+    try {
+
+        const response =
+            await fetch(
+                backendURL +
+                "/complete-my-look/" +
+                itemId
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to generate complete look."
+            );
+
+        }
+
+
+        displayCompleteLook(result);
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        body.innerHTML = `
+
+            <div class="complete-look-loading">
+
+                ❌ ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================
+   DISPLAY COMPLETE LOOK
+========================================= */
+
+function displayCompleteLook(result) {
+
+    currentCompleteLook = result;
+    const body =
+        document.getElementById(
+            "completeLookBody"
+        );
+
+
+    const selectedItem =
+        result.selected_item;
+
+
+    const items =
+        result.items || {};
+
+
+    const score =
+        result.score || 0;
+
+
+    let itemsHTML = "";
+
+
+    /* =========================================
+       MAIN SELECTED ITEM
+    ========================================= */
+
+    itemsHTML += `
+
+        <div class="complete-look-item main-look-item">
+
+            <img
+                src="${backendURL}/wardrobe-images/${selectedItem.image}"
+                alt="${selectedItem.item_name}"
+            >
+
+            <div class="complete-look-item-info">
+
+                <h4>
+                    👕 ${selectedItem.item_name}
+                </h4>
+
+                <p>
+                    <strong>Category:</strong>
+                    ${selectedItem.category}
+                </p>
+
+                <p>
+                    <strong>Colour:</strong>
+                    ${selectedItem.colour}
+                </p>
+
+                <p>
+                    <strong>Style:</strong>
+                    ${selectedItem.style || "Not specified"}
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    /* =========================================
+       ADDITIONAL ITEMS
+    ========================================= */
+
+    const itemLabels = {
+
+        bottom: "👖 Bottom",
+
+        footwear: "👠 Footwear",
+
+        bag: "👜 Bag",
+
+        jewellery: "💍 Jewellery",
+
+        sunglasses: "🕶️ Sunglasses",
+
+        watch: "⌚ Watch",
+
+        other_accessory: "✨ Accessory"
+
+    };
+
+
+    Object.keys(itemLabels).forEach(
+        function(key) {
+
+            const item =
+                items[key];
+
+
+            if (!item) {
+
+                return;
+
+            }
+
+
+            itemsHTML += `
+
+                <div class="complete-look-item">
+
+                    <img
+                        src="${backendURL}/wardrobe-images/${item.image}"
+                        alt="${item.item_name}"
+                    >
+
+                    <div class="complete-look-item-info">
+
+                        <h4>
+                            ${itemLabels[key]}
+                        </h4>
+
+                        <p>
+                            <strong>Name:</strong>
+                            ${item.item_name}
+                        </p>
+
+                        <p>
+                            <strong>Colour:</strong>
+                            ${item.colour || "Not specified"}
+                        </p>
+
+                        <p>
+                            <strong>Style:</strong>
+                            ${item.style || "Not specified"}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    /* =========================================
+       EXPLANATION
+    ========================================= */
+
+    let explanationHTML = "";
+
+
+    if (
+        result.explanation &&
+        result.explanation.length > 0
+    ) {
+
+        explanationHTML = `
+
+            <div class="complete-look-explanation">
+
+                <h3>
+                    💡 Why StyleSense AI selected this look
+                </h3>
+
+                <ul>
+
+                    ${result.explanation.map(
+                        explanation => `
+                            <li>
+                                ${explanation}
+                            </li>
+                        `
+                    ).join("")}
+
+                </ul>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =========================================
+       PREFERENCES SUMMARY
+    ========================================= */
+
+    let preferencesHTML = "";
+
+
+    if (result.preferences) {
+
+        preferencesHTML = `
+
+            <div class="complete-look-explanation">
+
+                <h3>
+                    🎯 Your Current Preferences
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <strong>Occasion:</strong>
+                        ${result.preferences.occasion || "Not specified"}
+                    </li>
+
+                    <li>
+                        <strong>Weather:</strong>
+                        ${result.preferences.weather || "Not specified"}
+                    </li>
+
+                    <li>
+                        <strong>Style:</strong>
+                        ${result.preferences.style || "Not specified"}
+                    </li>
+
+                    <li>
+                        <strong>Preferred Colour:</strong>
+                        ${result.preferences.colour || "Not specified"}
+                    </li>
+
+                    <li>
+                        <strong>Accessories:</strong>
+                        ${result.preferences.accessories || "Not specified"}
+                    </li>
+
+                    <li>
+                        <strong>Budget:</strong>
+                        ${result.preferences.budget || "Not specified"}
+                    </li>
+
+                </ul>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =========================================
+       FINAL MODAL
+    ========================================= */
+body.innerHTML = `
+
+    <div class="complete-look-score">
+
+        <div class="score-circle">
+            ${score}
+        </div>
+
+        <div class="score-label">
+            Compatibility Score
+        </div>
+
+    </div>
+
+
+    <div class="complete-look-items">
+
+        ${itemsHTML}
+
+    </div>
+
+
+    ${preferencesHTML}
+
+
+    ${explanationHTML}
+
+
+  <button
+    class="save-complete-look-button"
+    onclick="saveCompleteLook()"
+>
+    ❤️ Save This Look
+</button>
+
+<button
+    class="generate-another-look-button"
+    onclick="generateAnotherCompleteLook()"
+>
+    🔄 Generate Another Look
+</button>
+
+`;
+}
+/* =========================================
+   SAVE COMPLETE MY LOOK
+========================================= */
+
+async function saveCompleteLook() {
+
+    if (
+        !currentCompleteLook ||
+        !currentCompleteLook.items
+    ) {
+
+        alert(
+            "No complete look is available to save."
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        const outfit = {};
+
+
+        /* =========================================
+           ADD SELECTED MAIN ITEM
+        ========================================= */
+
+        if (currentCompleteLook.selected_item) {
+
+            const selectedItem =
+                currentCompleteLook.selected_item;
+
+
+            const category =
+                (selectedItem.category || "")
+                    .toLowerCase();
+
+
+            if (
+                category === "top"
+            ) {
+
+                outfit.top =
+                    selectedItem;
+
+            }
+
+            else if (
+                category === "bottom"
+            ) {
+
+                outfit.bottom =
+                    selectedItem;
+
+            }
+
+            else {
+
+                outfit.one_piece =
+                    selectedItem;
+
+            }
+
+        }
+
+
+        /* =========================================
+           ADD ADDITIONAL ITEMS
+        ========================================= */
+
+        Object.keys(
+            currentCompleteLook.items
+        ).forEach(
+            function(key) {
+
+                const item =
+                    currentCompleteLook.items[key];
+
+
+                if (item) {
+
+                    outfit[key] =
+                        item;
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           SAVE USING EXISTING SAVED OUTFIT API
+        ========================================= */
+
+        const response =
+            await fetch(
+                backendURL +
+                "/saved-outfit",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        outfit:
+                            outfit,
+
+                        preferences:
+                            currentCompleteLook
+                                .preferences
+                            || {},
+
+                        score:
+                            currentCompleteLook
+                                .score
+                            || 0,
+
+                        explanation:
+                            currentCompleteLook
+                                .explanation
+                            || []
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.detail ||
+                "Unable to save complete look."
+            );
+
+        }
+
+
+        /* =========================================
+           DUPLICATE CHECK
+        ========================================= */
+
+        if (
+            result.status === "duplicate"
+        ) {
+
+            alert(
+                "❤️ This complete look is already saved."
+            );
+
+            return;
+
+        }
+
+
+        /* =========================================
+           SUCCESS
+        ========================================= */
+
+        alert(
+            "❤️ Complete look saved successfully!"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Save complete look error:",
+            error
+        );
+
+
+        alert(
+            error.message ||
+            "Something went wrong while saving the complete look."
+        );
+
+    }
+
+}
+/* =========================================
+   GENERATE ANOTHER COMPLETE LOOK
+========================================= */
+
+async function generateAnotherCompleteLook() {
+
+    if (!currentCompleteLook) {
+
+        alert(
+            "No complete look is available."
+        );
+
+        return;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "completeLookModal"
+        );
+
+
+    const body =
+        document.getElementById(
+            "completeLookBody"
+        );
+
+
+    /*
+     * Collect IDs of the items already
+     * used in the current complete look.
+     */
+
+    const excludedIds = [];
+
+
+    /*
+     * Exclude the selected main item.
+     */
+
+    if (
+        currentCompleteLook.selected_item &&
+        currentCompleteLook.selected_item.id
+    ) {
+
+        excludedIds.push(
+
+            currentCompleteLook.selected_item.id
+
+        );
+
+    }
+
+
+    /*
+     * Exclude all additional items
+     * from the current look.
+     */
+
+    if (currentCompleteLook.items) {
+
+        Object.keys(
+            currentCompleteLook.items
+        ).forEach(
+
+            function(key) {
+
+                const item =
+                    currentCompleteLook.items[key];
+
+
+                if (
+                    item &&
+                    item.id
+                ) {
+
+                    excludedIds.push(
+                        item.id
+                    );
+
+                }
+
+            }
+
+        );
+
+    }
+
+
+    /*
+     * Show loading message.
+     */
+
+    body.innerHTML = `
+
+        <div class="complete-look-loading">
+
+            🔄 Generating another complete look...
+
+        </div>
+
+    `;
+
+
+    try {
+
+        /*
+         * Convert item IDs into:
+         *
+         * id1,id2,id3,id4
+         */
+
+        const excludeIdsString =
+            excludedIds.join(",");
+
+
+        /*
+         * Call the new backend endpoint.
+         */
+
+        const response =
+            await fetch(
+
+                backendURL +
+                "/complete-my-look/another/" +
+                currentCompleteLook.selected_item.id +
+                "?exclude_ids=" +
+                encodeURIComponent(
+                    excludeIdsString
+                )
+
+            );
+
+
+        const result =
+            await response.json();
+
+
+        /*
+         * Handle backend error.
+         */
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                result.detail ||
+                "Unable to generate another complete look."
+
+            );
+
+        }
+
+
+        /*
+         * Display the new look.
+         */
+
+        displayCompleteLook(
+            result
+        );
+
+
+    } catch (error) {
+
+        console.error(
+
+            "Generate another look error:",
+
+            error
+
+        );
+
+
+        body.innerHTML = `
+
+            <div class="complete-look-loading">
+
+                ❌ ${error.message}
+
+                <br><br>
+
+                <button
+                    class="generate-another-look-button"
+                    onclick="generateAnotherCompleteLook()"
+                >
+                    🔄 Try Again
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+/* =========================================
+   CLOSE COMPLETE LOOK
+========================================= */
+
+function closeCompleteLook() {
+
+    document.getElementById(
+        "completeLookModal"
+    ).style.display =
+        "none";
+
+}
+
+
+/* =========================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================= */
+
+window.addEventListener(
+    "click",
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "completeLookModal"
+            );
+
+
+        if (event.target === modal) {
+
+            closeCompleteLook();
+
+        }
+
+    }
+);
+
+
+/* =================================
+   LOAD WHEN PAGE OPENS
+================================= */
+
+loadWardrobe();
+
+</script>
+
+
+</body>
+
+</html>

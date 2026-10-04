@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StyleSense AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f5f2;
+            color: #2d2d2d;
+        }
+
+        /* Navigation Bar */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            font-weight: normal;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Hero Section */
+
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            font-weight: normal;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #2d2d2d;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 17px;
+        }
+
+        .button:hover {
+            background: #555;
+        }
+
+        /* Features */
+
+        .features {
+            background: white;
+            padding: 50px 60px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            width: 250px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2d2d2d;
+            color: white;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            Style<span>Sense AI</span>
+        </div>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Wardrobe</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+
+    </nav>
+
+
+    <!-- Main Hero Section -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Your Style.<br>
+                Your Wardrobe.<br>
+                <span>Your AI.</span>
+            </h1>
+
+            <p>
+                Get personalized fashion recommendations
+                based on your appearance, wardrobe,
+                preferences and occasion.
+            </p>
+
+            <a href="profile.html" class="button">
+                Get Started
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <h3>Personalized Style</h3>
+
+            <p>
+                Recommendations designed according
+                to your personal style and preferences.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>Smart Wardrobe</h3>
+
+            <p>
+                Manage your clothes and create
+                outfit combinations from your wardrobe.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>AI Recommendations</h3>
+
+            <p>
+                AI suggests suitable outfits,
+                colours and accessories for you.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>Explainable AI</h3>
+
+            <p>
+                Understand why a particular outfit
+                was recommended to you.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>© 2026 StyleSense AI | Personalized Fashion Recommendation System</p>
+
+    </footer>
+
+</body>
+
+</html>
