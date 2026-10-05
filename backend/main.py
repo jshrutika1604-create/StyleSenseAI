@@ -1,4 +1,5 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, Form
+from fastapi import FastAPI, File, UploadFile, Form, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -7,7 +8,7 @@ import cv2
 import numpy as np
 import json
 import uuid
-
+from pathlib import Path
 
 # ============================================================
 # STYLE SENSE AI APPLICATION
@@ -203,17 +204,8 @@ class Preferences(BaseModel):
 
 @app.get("/")
 def home():
-
-    return {
-
-        "message":
-            "Welcome to StyleSense AI",
-
-        "status":
-            "Backend is running successfully"
-
-    }
-
+    frontend_path = Path(__file__).resolve().parent.parent / "frontend" / "index.html"
+    return FileResponse(frontend_path)
 
 # ============================================================
 # HEALTH CHECK API
